@@ -21,6 +21,8 @@ const MODELS = [
   'opus',
   'qwen',
   'sonnet2',
+  'lovable',
+  'v0',
 ]
 
 export default function Layout({ children }: PropsWithChildren) {
