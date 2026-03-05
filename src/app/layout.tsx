@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const MODELS = [
   'codex',
   'codex2',
+  'gpt54',
   'gemini',
   'glm',
   'sonnet',
