@@ -30,14 +30,14 @@ export default function Layout({ children }: PropsWithChildren) {
         <ThemeProvider attribute="class" enableSystem>
           {children}
 
-          <div className="fixed right-0 bottom-0 left-0 z-10 flex w-full justify-center gap-1 p-4">
+          <div className="fixed right-0! bottom-0! left-0 z-10 flex w-full justify-center gap-1 p-4">
             {MODELS.map((model) => (
               <div key={model} className="flex flex-col gap-1">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Link
                     key={index}
                     href={`/landing-page-${model}-${index + 1}`}
-                    className="bg-accent block rounded-sm px-2 py-1 text-xs uppercase opacity-80"
+                    className="bg-accent! block! rounded-sm! px-2! py-1! text-xs! uppercase! opacity-80!"
                   >
                     {model} {index + 1}
                   </Link>
