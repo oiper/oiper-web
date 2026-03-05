@@ -18,6 +18,8 @@ export default function LandingPageKimi2() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     function handleMouseMove(e: MouseEvent) {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
@@ -37,7 +39,7 @@ export default function LandingPageKimi2() {
               linear-gradient(90deg, rgba(0, 255, 127, 0.1) 1px, transparent 1px)
             `,
             backgroundSize: '50px 50px',
-            transform: `translate(${(mousePos.x - window.innerWidth / 2) / 50}px, ${(mousePos.y - window.innerHeight / 2) / 50}px)`,
+            transform: `translate(${(mousePos.x - (typeof window !== 'undefined' ? window.innerWidth / 2 : 0)) / 50}px, ${(mousePos.y - (typeof window !== 'undefined' ? window.innerHeight / 2 : 0)) / 50}px)`,
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0f]/50 to-[#0a0a0f]"></div>
