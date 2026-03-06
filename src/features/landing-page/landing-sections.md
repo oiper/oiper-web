@@ -17,8 +17,6 @@ Hold a hotkey, speak, release — your words appear instantly in any application
 **Primary Action**
 Download OiPer
 
----
-
 ## 2. How OiPer Works
 
 A simple workflow designed for speed.
@@ -30,8 +28,6 @@ A simple workflow designed for speed.
 Your speech is instantly transcribed and inserted into the active application.
 
 No switching apps. No waiting.
-
----
 
 ## 3. Core Features
 
@@ -50,8 +46,6 @@ Improve formatting or grammar using local or online models.
 **Flexible Models & Backends**
 Choose CPU, GPU, or automatic backend selection.
 
----
-
 ## 4. Performance
 
 OiPer is built with native code for maximum speed.
@@ -62,14 +56,12 @@ OiPer is built with native code for maximum speed.
 
 **Benchmark (30s English Audio)**
 
-| Solution              | Time  |
-| --------------------- | ----- |
-| OiPer Desktop         | 1.5s  |
-| Lemonfox API          | 3.27s |
+| Solution | Time |
+| | -- |
+| OiPer Desktop | 1.5s |
+| Lemonfox API | 3.27s |
 | Python Faster Whisper | 3.55s |
-| OpenAI Whisper API    | 6.46s |
-
----
+| OpenAI Whisper API | 6.46s |
 
 ## 5. Privacy
 
@@ -82,9 +74,13 @@ OiPer is designed to keep your data under your control.
 
 You decide when anything goes online.
 
----
+## 6. Pricing
 
-## 6. Download / Get Started
+OiPer is free to use with local models. Optional online features are pay-as-you-go.
+
+- Unlimited local transcription, no restrictions
+
+## 7. Download / Get Started
 
 Download OiPer and start dictating instantly.
 
@@ -97,9 +93,7 @@ Download OiPer and start dictating instantly.
 
 Voice input should feel instant.
 
----
-
-## 7. Footer
+## 8. Footer
 
 **Links**
 
