@@ -93,7 +93,7 @@ export function LandingPage() {
             <div className="space-y-12 lg:col-span-7">
               <div className="space-y-2">
                 <p className="text-sm font-medium tracking-[0.2em] text-[#999] uppercase">
-                  Voice-to-Text Application
+                  UPCOMING
                 </p>
                 <div className="h-px w-20 bg-[#1a1a1a]"></div>
               </div>
