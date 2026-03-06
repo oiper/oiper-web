@@ -56,12 +56,12 @@ OiPer is built with native code for maximum speed.
 
 **Benchmark (30s English Audio)**
 
-| Solution | Time |
-| | -- |
-| OiPer Desktop | 1.5s |
-| Lemonfox API | 3.27s |
+| Solution              | Time  |
+| --------------------- | ----- |
+| OiPer Desktop         | 1.5s  |
+| Lemonfox API          | 3.27s |
 | Python Faster Whisper | 3.55s |
-| OpenAI Whisper API | 6.46s |
+| OpenAI Whisper API    | 6.46s |
 
 ## 5. Privacy
 
