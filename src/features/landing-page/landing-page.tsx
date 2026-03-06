@@ -1,3 +1,5 @@
+'use client'
+
 import { HeroSection } from './sections/hero-section'
 
 export function LandingPage() {
