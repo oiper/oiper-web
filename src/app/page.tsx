@@ -1,3 +1,3 @@
-import { LandingPage } from '@/features/landing-page'
+import { LandingPage } from '@/features/landing-page/landing-page'
 
 export default LandingPage
