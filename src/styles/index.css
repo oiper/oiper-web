@@ -13,11 +13,13 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body antialiased;
   }
 }
 
@@ -26,8 +28,8 @@
   --color-current: currentColor;
   --color-transparent: transparent;
 
-  --font-body: var(--next-font-inter);
-  --font-mono: var(--next-font-fira-code);
+  --font-body: var(--next-font-inter), sans-serif;
+  --font-mono: var(--next-font-fira-code), monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
