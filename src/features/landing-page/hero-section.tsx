@@ -20,10 +20,10 @@ export function Hero() {
 
       <Wrapper className="text-center [--max-width:60rem] sm:pb-12">
         <h1 className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-          The best{' '}
+          Voice to Text.{' '}
           <span className="relative">
             <span className="from-primary via-chart-1 to-chart-2 bg-gradient-to-r bg-clip-text text-transparent">
-              CSS Wrapper
+              Instantly. Privately.
             </span>
             <svg
               className="text-primary/20 absolute -bottom-2 left-0 h-3 w-full"
@@ -42,14 +42,13 @@ export function Hero() {
         </h1>
 
         <p className="text-muted-foreground mb-10 text-xl sm:text-2xl">
-          Generate responsive CSS wrappers that give you{' '}
-          <strong className="text-foreground">exactly</strong> the content width
-          you want. No more math, no more surprises.
+          Hold a hotkey, speak, release, and your words appear instantly in any
+          application.
         </p>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
           <Button size="lg" className="text-base" asChild>
-            <a href="#playground">Try it now</a>
+            <a href="#download">Download OiPer</a>
           </Button>
           <Button
             variant="outline"
@@ -57,7 +56,7 @@ export function Hero() {
             className="text-base backdrop-blur-2xl"
             asChild
           >
-            <a href="#why">Learn why</a>
+            <a href="#how-it-works">How it works</a>
           </Button>
         </div>
       </Wrapper>
