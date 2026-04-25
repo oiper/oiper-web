@@ -24,10 +24,6 @@
 }
 
 @theme inline {
-  --color-*: initial;
-  --color-current: currentColor;
-  --color-transparent: transparent;
-
   --font-body: var(--next-font-inter), sans-serif;
   --font-mono: var(--next-font-fira-code), monospace;
 

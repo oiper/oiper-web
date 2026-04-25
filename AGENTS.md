@@ -5,4 +5,3 @@
 ## Stylings
 
 - NEVER modify any CSS files (`*.css`). Never write CSS. Use Tailwind utility classes in JSX only.
-- All the default tailwind colors are disabled, only use the theme colors
