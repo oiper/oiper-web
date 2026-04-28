@@ -53,7 +53,7 @@ export function HeroSection() {
         </a>
       </nav>
 
-      <div className="relative z-10 mx-auto grid max-w-[1200px] items-center gap-16 px-6 pt-20 pb-36 sm:px-10 lg:min-h-[620px] lg:grid-cols-[0.5fr_0.5fr] lg:pt-16">
+      <div className="relative z-10 mx-auto grid min-h-[min(100vh,56rem)] max-w-[1200px] items-center gap-16 px-6 pt-20 pb-36 sm:px-10 lg:grid-cols-[0.5fr_0.5fr] lg:pt-16">
         <div>
           <h1 className="max-w-[520px] text-[3.5rem] leading-[1.05] font-semibold tracking-[-0.04em] text-white sm:text-[4.5rem]">
             Voice to Text.
