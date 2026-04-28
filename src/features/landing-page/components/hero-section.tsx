@@ -1,94 +1,44 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { Boxes, Mic } from 'lucide-react'
 import { LightningBase } from './lightning-base'
 import { AnimatedWaveform } from './animated-waveform'
 
 export function HeroSection() {
-  const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 80])
-  const springY = useSpring(heroY, { stiffness: 100, damping: 30 })
-
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
   return (
-    <section
-      ref={heroRef}
-      className="relative overflow-hidden border-b border-white/[0.06] bg-[#0a0a0a]"
-    >
-      <motion.div className="absolute inset-0" style={{ opacity: heroOpacity }}>
+    <section className="relative overflow-hidden border-b border-white/[0.06] bg-[#0a0a0a]">
+      <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_15%,rgba(255,255,255,0.03),transparent_40%),radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.02),transparent_35%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(180deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:120px_120px]" />
-        <div
-          className="pointer-events-none absolute h-[500px] w-[500px] rounded-full transition-transform duration-700 ease-out"
-          style={{
-            background: 'radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%)',
-            left: mousePos.x - 250,
-            top: mousePos.y - 250,
-          }}
-        />
         <LightningBase />
-      </motion.div>
+      </div>
 
       <nav className="relative z-10 mx-auto flex h-[80px] max-w-[1200px] items-center justify-between px-6 sm:px-10">
-        <motion.a
+        <a
           href="/"
           className="text-2xl font-semibold tracking-[-0.04em] text-white"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
         >
           OiPer
-        </motion.a>
+        </a>
 
-        <motion.div
-          className="hidden items-center gap-10 text-sm text-white/60 md:flex"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <a href="#features" className="transition hover:text-white">Features</a>
-          <a href="#performance" className="transition hover:text-white">Performance</a>
-          <a href="#privacy" className="transition hover:text-white">Privacy</a>
-          <a href="#download" className="transition hover:text-white">Downloads</a>
-          <a href="/docs" className="transition hover:text-white">Docs</a>
-        </motion.div>
+        <div className="hidden items-center gap-10 text-sm text-white/60 md:flex">
+          <a href="#features" className="hover:text-white">Features</a>
+          <a href="#performance" className="hover:text-white">Performance</a>
+          <a href="#privacy" className="hover:text-white">Privacy</a>
+          <a href="#download" className="hover:text-white">Downloads</a>
+          <a href="/docs" className="hover:text-white">Docs</a>
+        </div>
 
-        <motion.a
+        <a
           href="/download"
-          className="inline-flex h-10 items-center justify-center rounded border border-white/20 bg-white/5 px-5 text-sm font-medium text-white transition hover:border-white/40 hover:bg-white/10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          className="inline-flex h-10 items-center justify-center rounded border border-white/20 bg-white/5 px-5 text-sm font-medium text-white hover:border-white/40 hover:bg-white/10"
         >
           Download
-        </motion.a>
+        </a>
       </nav>
 
-      <motion.div
-        className="relative z-10 mx-auto grid max-w-[1200px] items-center gap-16 px-6 pt-20 pb-36 sm:px-10 lg:min-h-[620px] lg:grid-cols-[0.5fr_0.5fr] lg:pt-16"
-        style={{ y: springY }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
+      <div className="relative z-10 mx-auto grid max-w-[1200px] items-center gap-16 px-6 pt-20 pb-36 sm:px-10 lg:min-h-[620px] lg:grid-cols-[0.5fr_0.5fr] lg:pt-16">
+        <div>
           <h1 className="max-w-[520px] text-[3.5rem] leading-[1.05] font-semibold tracking-[-0.04em] text-white sm:text-[4.5rem]">
             Voice to Text.
             <span className="block">Instantly.</span>
@@ -101,25 +51,20 @@ export function HeroSection() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <a
               href="/download"
-              className="inline-flex h-[52px] items-center justify-center rounded bg-white px-8 text-base font-medium text-[#0a0a0a] transition hover:bg-white/90"
+              className="inline-flex h-[52px] items-center justify-center rounded bg-white px-8 text-base font-medium text-[#0a0a0a] hover:bg-white/90"
             >
               Download OiPer
             </a>
             <a
               href="#workflow"
-              className="inline-flex h-[52px] items-center justify-center rounded border border-white/15 px-8 text-base font-medium text-white transition hover:border-white/30 hover:bg-white/5"
+              className="inline-flex h-[52px] items-center justify-center rounded border border-white/15 px-8 text-base font-medium text-white hover:border-white/30 hover:bg-white/5"
             >
               See how it works
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="relative min-h-[340px] sm:min-h-[400px]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
+        <div className="relative min-h-[340px] sm:min-h-[400px]">
           <div className="absolute top-0 right-0 left-0 rounded-xl border border-white/[0.08] bg-[#111111]/90 p-6 backdrop-blur-md sm:left-8">
             <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
               <div className="flex gap-2">
@@ -130,20 +75,12 @@ export function HeroSection() {
               <Boxes className="size-4 text-white/10" />
             </div>
             <div className="min-h-[180px] pt-8 text-xl leading-relaxed tracking-[-0.02em] text-white/80 sm:text-2xl">
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
-                Meeting notes from today.
-              </motion.p>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3 }}>
-                We&apos;ll launch the new feature next week
-              </motion.p>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>
+              <p>Meeting notes from today.</p>
+              <p>We&apos;ll launch the new feature next week</p>
+              <p>
                 and focus on performance improvements.
-                <motion.span
-                  className="ml-1 inline-block h-6 w-px bg-white/50"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                />
-              </motion.p>
+                <span className="ml-1 inline-block h-6 w-px bg-white/50" />
+              </p>
             </div>
           </div>
 
@@ -158,8 +95,8 @@ export function HeroSection() {
               </p>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   )
 }

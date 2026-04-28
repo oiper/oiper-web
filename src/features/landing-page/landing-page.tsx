@@ -3,6 +3,7 @@ import { WorkflowSection } from './components/workflow-section'
 import { FeaturesSection } from './components/features-section'
 import { PerformanceSection } from './components/performance-section'
 import { PrivacySection } from './components/privacy-section'
+import { PricingSection } from './components/pricing-section'
 import { DownloadSection } from './components/download-section'
 import { FooterSection } from './components/footer-section'
 
@@ -14,6 +15,7 @@ export function LandingPage() {
       <FeaturesSection />
       <PerformanceSection />
       <PrivacySection />
+      <PricingSection />
       <DownloadSection />
       <FooterSection />
     </main>

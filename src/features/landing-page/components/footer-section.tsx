@@ -25,7 +25,7 @@ export function FooterSection() {
               <a
                 key={link.label}
                 href={link.href}
-                className="inline-flex items-center gap-2 transition hover:text-white"
+                className="inline-flex items-center gap-2 hover:text-white"
               >
                 <link.icon className="size-4" strokeWidth={1.5} />
                 {link.label}
