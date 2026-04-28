@@ -26,10 +26,10 @@ export function LanguagesSection() {
       className="relative overflow-hidden border-b border-white/[0.06] bg-[#0a0a0a] py-32 sm:py-40"
     >
       <img
-        src="https://cdn.undraw.co/illustrations/world_bdnk.svg"
+        src="/undraw_world_bdnk.svg"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 right-0 hidden h-[520px] w-auto -translate-y-1/2 translate-x-1/4 select-none opacity-[0.1] lg:block"
+        className="pointer-events-none absolute top-1/2 right-0 hidden h-[520px] w-auto translate-x-1/4 -translate-y-1/2 opacity-[0.1] select-none lg:block"
       />
 
       <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
@@ -45,7 +45,7 @@ export function LanguagesSection() {
 
         <div className="mt-16 h-px w-full bg-gradient-to-r from-white/[0.1] via-white/[0.04] to-transparent sm:mt-20" />
 
-        <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:mt-16">
+        <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mt-16 lg:grid-cols-4">
           {languages.map((language) => (
             <div key={language.name} className="flex items-center gap-3">
               <div className="relative h-4 w-6 shrink-0 overflow-hidden">
