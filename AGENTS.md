@@ -1,12 +1,11 @@
 ## Project
 
-- Never start a dev server (`npm run dev`) or build the project (`npm run build`); the user handles this.
-- CHECK linting errors and warnings in the code before submitting any changes; fix all issues to ensure a clean codebase.
+- CHECK linting errors and warnings in the code before submitting any changes; fix all issues to ensure a clean codebase (eg: `nr lint` or `nr lint<file>`).
 
 ## Styling
 
-- Use only Tailwind utility classes inside JSX; never create or modify any CSS files (`*.css`).
 - NEVER add pills or badges to the UI; eg: on top of a heading.
+- Use only Tailwind utility classes inside JSX; never create or modify any CSS files (`*.css`).
 
 ## Layout
 
