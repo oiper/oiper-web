@@ -1,8 +1,16 @@
 ## Project
 
-- NEVER start a dev server (`npm run dev`) or build the project (`npm run build`). The user will do that themselves.
+- Never start a dev server (`npm run dev`) or build the project (`npm run build`); the user handles this.
 
-## Stylings
+## Styling
 
-- NEVER modify any CSS files (`*.css`). Never write CSS. Use Tailwind utility classes in JSX only.
-- All the default tailwind colors are disabled, only use the theme colors
+- Use only Tailwind utility classes inside JSX; never create or modify any CSS files (`*.css`).
+- NEVER add pills or badges to the UI; eg: on top of a heading.
+
+## Layout
+
+- Section alignment must strictly alternate between **left** and **center**; no two adjacent sections may share the same alignment, and no other alignments are allowed.
+
+## Animation
+
+- Primary content (headings, main text, key foreground elements) must remain completely static and instantly visible—no transitions, hover effects, scroll reveals, fades, or motion—while animations are allowed only on non-essential elements (backgrounds, decorative layers, abstractions, illustrations).
