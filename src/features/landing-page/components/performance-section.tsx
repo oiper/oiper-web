@@ -52,7 +52,7 @@ export function PerformanceSection() {
             </div>
           </div>
 
-          <div className="relative self-center rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
+          <div className="relative self-center rounded-xl border border-white/[0.06] bg-white/[0.02] px-6 py-7">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
             <p className="text-[10px] font-medium tracking-widest text-white/25 uppercase">
