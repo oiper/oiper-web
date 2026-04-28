@@ -1,12 +1,15 @@
 ## Project
 
-- NEVER start a dev server (`npm run dev`) or build the project (`npm run build`). The user will do that themselves.
+- Never start a dev server (`npm run dev`) or build the project (`npm run build`); the user handles this.
 
-## Stylings
+## Styling
 
-- NEVER modify any CSS files (`*.css`). Never write CSS. Use Tailwind utility classes in JSX only.
-- NEVER add pills or badges.
+- Use only Tailwind utility classes inside JSX; never create or modify any CSS files (`*.css`), and do not use pills or badges.
 
 ## Layout
 
-- Sibling sections must NEVER share the same title alignment. Alternate between left-aligned and centered (or other alignments) so that no two adjacent sections have the same alignment. This applies to the section's visual flow, not just the title in isolation.
+- Section alignment must strictly alternate between **left** and **center**; no two adjacent sections may share the same alignment, and no other alignments are allowed.
+
+## Animation
+
+- Primary content (headings, main text, key foreground elements) must remain completely static and instantly visible—no transitions, hover effects, scroll reveals, fades, or motion—while animations are allowed only on non-essential elements (backgrounds, decorative layers, abstractions, illustrations) and must not affect readability or visibility.
