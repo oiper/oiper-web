@@ -2,7 +2,7 @@
 
 import { Database, Download, Keyboard, Type, Wand2, Zap } from 'lucide-react'
 
-const leftFeatures = [
+const features = [
   {
     icon: Keyboard,
     title: 'Global Hotkey Recording',
@@ -18,9 +18,6 @@ const leftFeatures = [
     title: 'Local Transcription',
     description: 'Speech never leaves your device. Ever.',
   },
-]
-
-const rightFeatures = [
   {
     icon: Wand2,
     title: 'Optional AI Text Cleanup',
@@ -45,8 +42,13 @@ export function FeaturesSection() {
       id="features"
       className="relative border-b border-white/[0.06] bg-[#0c0c0c] py-32 sm:py-40"
     >
-      <div className="mx-auto max-w-[1100px] px-6 sm:px-10">
-        <div className="max-w-[500px]">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
+        <div className="absolute top-1/2 left-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/3 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02),transparent_70%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
+        <div className="mx-auto max-w-[560px] text-center">
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
             Everything you need.
           </h2>
@@ -56,48 +58,27 @@ export function FeaturesSection() {
           </p>
         </div>
 
-        <div className="mt-20 grid gap-16 lg:grid-cols-2 lg:gap-24">
-          <div className="grid gap-10">
-            {leftFeatures.map((feature) => (
-              <div key={feature.title} className="flex items-start gap-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03]">
-                  <feature.icon
-                    className="size-4 text-white/50"
-                    strokeWidth={1.5}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-base font-medium text-white/90">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/35">
-                    {feature.description}
-                  </p>
-                </div>
+        <div className="mt-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-7 sm:p-8"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.1] to-transparent" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03]">
+                <feature.icon
+                  className="size-5 text-white/50"
+                  strokeWidth={1.5}
+                />
               </div>
-            ))}
-          </div>
-
-          <div className="grid gap-10">
-            {rightFeatures.map((feature) => (
-              <div key={feature.title} className="flex items-start gap-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03]">
-                  <feature.icon
-                    className="size-4 text-white/50"
-                    strokeWidth={1.5}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-base font-medium text-white/90">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/35">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+              <h3 className="mt-6 text-base font-medium text-white/90">
+                {feature.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/35">
+                {feature.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

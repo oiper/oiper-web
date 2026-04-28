@@ -20,7 +20,7 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   metadataBase: new URL('https://desktop.oiper.com'),
   title: {
-    default: 'OiPer — Privacy-First Voice-to-Text',
+    default: 'OiPer | Privacy-First Voice-to-Text',
     template: '%s | OiPer',
   },
   description:
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://desktop.oiper.com',
     siteName: 'OiPer',
-    title: 'OiPer — Privacy-First Voice-to-Text',
+    title: 'OiPer | Privacy-First Voice-to-Text',
     description:
       'Privacy-first desktop app that transforms your voice into text. Hold a hotkey, speak, release. Free for macOS, Windows & Linux.',
     images: [
@@ -61,13 +61,13 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'OiPer — Privacy-First Voice-to-Text',
+        alt: 'OiPer | Privacy-First Voice-to-Text',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OiPer — Privacy-First Voice-to-Text',
+    title: 'OiPer | Privacy-First Voice-to-Text',
     description:
       'Privacy-first desktop app that transforms your voice into text. Free for macOS, Windows & Linux.',
     images: ['/og.png'],
