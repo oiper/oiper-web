@@ -1,6 +1,6 @@
 'use client'
 
-import { BookOpen, Github, ShieldCheck, LifeBuoy } from 'lucide-react'
+import { BookOpen, Github, LifeBuoy, ShieldCheck } from 'lucide-react'
 
 const links = [
   { icon: BookOpen, label: 'Documentation', href: '/docs' },
@@ -15,7 +15,9 @@ export function FooterSection() {
       <div className="mx-auto max-w-[1100px]">
         <div className="flex flex-col items-start justify-between gap-10 sm:flex-row sm:items-center">
           <div>
-            <p className="text-xl font-semibold tracking-[-0.03em] text-white">OiPer</p>
+            <p className="text-xl font-semibold tracking-[-0.03em] text-white">
+              OiPer
+            </p>
             <p className="mt-2 max-w-[240px] text-sm leading-relaxed text-white/30">
               Private speech transcription built for speed and control.
             </p>
@@ -34,9 +36,7 @@ export function FooterSection() {
           </div>
         </div>
         <div className="mt-12 border-t border-white/[0.06] pt-8">
-          <p className="text-sm text-white/25">
-            © OiPer
-          </p>
+          <p className="text-sm text-white/25">© OiPer</p>
         </div>
       </div>
     </footer>

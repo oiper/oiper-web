@@ -1,6 +1,6 @@
 'use client'
 
-import { Keyboard, Type, Download, Wand2, Database, Zap } from 'lucide-react'
+import { Database, Download, Keyboard, Type, Wand2, Zap } from 'lucide-react'
 
 const leftFeatures = [
   {
@@ -24,7 +24,8 @@ const rightFeatures = [
   {
     icon: Wand2,
     title: 'Optional AI Text Cleanup',
-    description: 'Improve grammar, fix typos, or refine tone—entirely optional.',
+    description:
+      'Improve grammar, fix typos, or refine tone—entirely optional.',
   },
   {
     icon: Database,
@@ -50,8 +51,8 @@ export function FeaturesSection() {
             Everything you need.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-white/40">
-            OiPer is minimal, private, and built for speed. Every feature
-            serves a purpose and gets out of your way.
+            OiPer is minimal, private, and built for speed. Every feature serves
+            a purpose and gets out of your way.
           </p>
         </div>
 
@@ -60,7 +61,10 @@ export function FeaturesSection() {
             {leftFeatures.map((feature) => (
               <div key={feature.title} className="flex items-start gap-5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03]">
-                  <feature.icon className="size-4 text-white/50" strokeWidth={1.5} />
+                  <feature.icon
+                    className="size-4 text-white/50"
+                    strokeWidth={1.5}
+                  />
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-white/90">
@@ -78,7 +82,10 @@ export function FeaturesSection() {
             {rightFeatures.map((feature) => (
               <div key={feature.title} className="flex items-start gap-5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03]">
-                  <feature.icon className="size-4 text-white/50" strokeWidth={1.5} />
+                  <feature.icon
+                    className="size-4 text-white/50"
+                    strokeWidth={1.5}
+                  />
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-white/90">

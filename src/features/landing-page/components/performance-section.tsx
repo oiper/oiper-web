@@ -28,10 +28,15 @@ export function PerformanceSection() {
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[1fr_auto] lg:items-start lg:gap-20">
           <div>
-            <p className="text-sm text-white/30">Benchmark: 30s English Audio</p>
+            <p className="text-sm text-white/30">
+              Benchmark: 30s English Audio
+            </p>
             <div className="mt-8 grid gap-5">
               {benchmarks.map(([name, value, width]) => (
-                <div key={name} className="grid grid-cols-[1fr_80px] items-center gap-4 sm:grid-cols-[200px_1fr_60px]">
+                <div
+                  key={name}
+                  className="grid grid-cols-[1fr_80px] items-center gap-4 sm:grid-cols-[200px_1fr_60px]"
+                >
                   <p className="text-sm text-white/60">{name}</p>
                   <div className="order-3 h-1.5 rounded-full bg-white/[0.06] sm:order-none">
                     <div
@@ -52,7 +57,10 @@ export function PerformanceSection() {
           <div className="grid gap-4 border-t border-white/[0.06] pt-10 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">
             {highlights.map((item) => (
               <div key={item} className="flex items-center gap-3">
-                <CheckCircle2 className="size-4 shrink-0 text-white/40" strokeWidth={1.5} />
+                <CheckCircle2
+                  className="size-4 shrink-0 text-white/40"
+                  strokeWidth={1.5}
+                />
                 <p className="text-sm text-white/60">{item}</p>
               </div>
             ))}

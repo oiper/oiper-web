@@ -1,8 +1,8 @@
 'use client'
 
 import { Boxes, Mic } from 'lucide-react'
-import { LightningBase } from './lightning-base'
 import { AnimatedWaveform } from './animated-waveform'
+import { LightningBase } from './lightning-base'
 
 export function HeroSection() {
   return (
@@ -22,11 +22,27 @@ export function HeroSection() {
         </a>
 
         <div className="hidden items-center gap-10 text-sm text-white/60 md:flex">
-          <a href="#features" className="hover:text-white">Features</a>
-          <a href="#performance" className="hover:text-white">Performance</a>
-          <a href="#privacy" className="hover:text-white">Privacy</a>
-          <a href="#download" className="hover:text-white">Downloads</a>
-          <a href="/docs" className="hover:text-white">Docs</a>
+          <a href="#features" className="hover:text-white">
+            Features
+          </a>
+          <a href="#performance" className="hover:text-white">
+            Performance
+          </a>
+          <a href="#privacy" className="hover:text-white">
+            Privacy
+          </a>
+          <a href="#languages" className="hover:text-white">
+            Languages
+          </a>
+          <a href="#testimonials" className="hover:text-white">
+            Testimonials
+          </a>
+          <a href="#download" className="hover:text-white">
+            Downloads
+          </a>
+          <a href="/docs" className="hover:text-white">
+            Docs
+          </a>
         </div>
 
         <a

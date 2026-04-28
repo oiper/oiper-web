@@ -1,9 +1,11 @@
 import { FeaturesSection } from './components/features-section'
 import { FooterSection } from './components/footer-section'
 import { HeroSection } from './components/hero-section'
+import { LanguagesSection } from './components/languages-section'
 import { PerformanceSection } from './components/performance-section'
 import { PricingSection } from './components/pricing-section'
 import { PrivacySection } from './components/privacy-section'
+import { TestimonialsSection } from './components/testimonials-section'
 
 export function LandingPage() {
   return (
@@ -12,8 +14,8 @@ export function LandingPage() {
       <FeaturesSection /> {/* CENTER ALIGNED SECTION */}
       <PerformanceSection /> {/* LEFT ALIGNED SECTION */}
       <PrivacySection /> {/* CENTER ALIGNED SECTION */}
-      LANGUAGES SECTION {/* LEFT ALIGNED SECTION */}
-      TESTIMONIALS SECTION {/* CENTER ALIGNED SECTION */}
+      <LanguagesSection /> {/* LEFT ALIGNED SECTION */}
+      <TestimonialsSection /> {/* CENTER ALIGNED SECTION */}
       <PricingSection /> {/* NO SECTION TITLES, just the pricing cards */}
       <FooterSection />
     </main>

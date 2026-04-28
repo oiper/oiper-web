@@ -32,15 +32,16 @@ export function PricingSection() {
               <p className="mt-2 text-5xl font-semibold tracking-[-0.03em] text-white">
                 $0
               </p>
-              <p className="mt-2 text-sm text-white/30">
-                Forever
-              </p>
+              <p className="mt-2 text-sm text-white/30">Forever</p>
             </div>
 
             <div className="mt-8 grid gap-4">
               {freeFeatures.map((feature) => (
                 <div key={feature} className="flex items-center gap-3">
-                  <Check className="size-4 shrink-0 text-white/40" strokeWidth={1.5} />
+                  <Check
+                    className="size-4 shrink-0 text-white/40"
+                    strokeWidth={1.5}
+                  />
                   <p className="text-sm text-white/60">{feature}</p>
                 </div>
               ))}

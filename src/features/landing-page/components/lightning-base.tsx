@@ -194,7 +194,12 @@ export function LightningBase() {
           scale: [1, 1.15, 1],
           opacity: [0.4, 0.15, 0.4],
         }}
-        transition={{ duration: 4, delay: 0.5, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{
+          duration: 4,
+          delay: 0.5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
       />
     </div>
   )
