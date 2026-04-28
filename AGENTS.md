@@ -1,6 +1,7 @@
 ## Project
 
 - Never start a dev server (`npm run dev`) or build the project (`npm run build`); the user handles this.
+- CHECK linting errors and warnings in the code before submitting any changes; fix all issues to ensure a clean codebase.
 
 ## Styling
 
