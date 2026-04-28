@@ -27,7 +27,7 @@ export function PerformanceSection() {
       </div>
 
       <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
-        <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:items-start lg:gap-20">
+        <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-20">
           <div>
             <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-[3.25rem]">
               Speed that feels instant.
@@ -52,7 +52,7 @@ export function PerformanceSection() {
             </div>
           </div>
 
-          <div className="relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
+          <div className="relative self-center rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
             <p className="text-[10px] font-medium tracking-widest text-white/25 uppercase">
