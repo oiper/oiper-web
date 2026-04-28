@@ -12,4 +12,4 @@
 
 ## Animation
 
-- Primary content (headings, main text, key foreground elements) must remain completely static and instantly visible—no transitions, hover effects, scroll reveals, fades, or motion—while animations are allowed only on non-essential elements (backgrounds, decorative layers, abstractions, illustrations) and must not affect readability or visibility.
+- Primary content (headings, main text, key foreground elements) must remain completely static and instantly visible—no transitions, hover effects, scroll reveals, fades, or motion—while animations are allowed only on non-essential elements (backgrounds, decorative layers, abstractions, illustrations).
