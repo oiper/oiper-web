@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
+import { PerformanceCanvas } from './performance-canvas'
 
 const benchmarks = [
   { name: 'OiPer (Local)', value: '1x', score: 100, highlight: true },
@@ -22,9 +23,7 @@ export function PerformanceSection() {
       id="performance"
       className="relative overflow-hidden border-b border-white/[0.06] bg-[#0a0a0a] py-32 sm:py-40"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/2 right-0 h-[600px] w-[600px] translate-x-1/3 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.015),transparent_70%)]" />
-      </div>
+      <PerformanceCanvas />
 
       <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
         <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-20">
