@@ -4,7 +4,8 @@
 
 ## Styling
 
-- Use only Tailwind utility classes inside JSX; never create or modify any CSS files (`*.css`), and do not use pills or badges.
+- Use only Tailwind utility classes inside JSX; never create or modify any CSS files (`*.css`).
+- NEVER add pills or badges to the UI; eg: on top of a heading.
 
 ## Layout
 
