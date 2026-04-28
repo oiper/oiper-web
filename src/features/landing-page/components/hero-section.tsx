@@ -1,6 +1,6 @@
 'use client'
 
-import { Boxes, Mic } from 'lucide-react'
+import { Mic, Settings } from 'lucide-react'
 import { AnimatedWaveform } from './animated-waveform'
 import { LightningBase } from './lightning-base'
 
@@ -80,34 +80,34 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative min-h-[340px] sm:min-h-[400px]">
-          <div className="absolute top-0 right-0 left-0 rounded-xl border border-white/[0.08] bg-[#111111]/90 p-6 backdrop-blur-md sm:left-8">
-            <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+        <div className="relative">
+          <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111111]">
+            <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4">
               <div className="flex gap-2">
-                <span className="size-3 rounded-full bg-white/10" />
-                <span className="size-3 rounded-full bg-white/10" />
-                <span className="size-3 rounded-full bg-white/10" />
+                <span className="size-3 rounded-full bg-[#ff5f57]" />
+                <span className="size-3 rounded-full bg-[#febc2e]" />
+                <span className="size-3 rounded-full bg-[#28c840]" />
               </div>
-              <Boxes className="size-4 text-white/10" />
+              <Settings className="size-4 text-white/30" />
             </div>
-            <div className="min-h-[180px] pt-8 text-xl leading-relaxed tracking-[-0.02em] text-white/80 sm:text-2xl">
-              <p>Meeting notes from today.</p>
-              <p>We&apos;ll launch the new feature next week</p>
-              <p>
-                and focus on performance improvements.
-                <span className="ml-1 inline-block h-6 w-px bg-white/50" />
-              </p>
+            <div className="px-6 py-10 sm:px-8 sm:py-20">
+              <div className="min-h-[180px] text-xl leading-relaxed tracking-[-0.02em] text-white/80 sm:text-2xl">
+                <p>Meeting notes from today.</p>
+                <p>We&apos;ll launch the new feature next week</p>
+                <p>and focus on performance</p>
+                <p>
+                  improvements.
+                  <span className="ml-1 inline-block h-6 w-px animate-pulse bg-white/50" />
+                </p>
+              </div>
             </div>
-          </div>
-
-          <div className="absolute right-0 bottom-0 left-0 rounded-xl border border-white/[0.08] bg-[#0f0f0f]/95 p-5 backdrop-blur-md sm:left-[-40px]">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 border-t border-white/[0.06] bg-[#0c0c0c] px-5 py-4">
               <div className="grid size-11 shrink-0 place-items-center rounded-full bg-white/[0.06]">
                 <Mic className="size-5 text-white/80" />
               </div>
               <AnimatedWaveform />
               <p className="w-16 text-right text-sm font-medium text-white/70">
-                00:03
+                00:18
               </p>
             </div>
           </div>
