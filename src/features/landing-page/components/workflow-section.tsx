@@ -37,69 +37,139 @@ export function WorkflowSection() {
       id="workflow"
       className="relative overflow-hidden border-b border-white/[0.06] bg-[#0a0a0a] py-32 sm:py-40"
     >
-      {/* Subtle radial glow behind the section */}
+      {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02),transparent_70%)]" />
+        <div className="absolute top-1/3 left-1/2 h-[800px] w-[600px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.025),transparent_60%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
-        <h2 className="mx-auto max-w-[500px] text-center text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-          Three steps. Zero friction.
-        </h2>
+      <div className="relative mx-auto max-w-[1000px] px-6 sm:px-10">
+        {/* Section header */}
+        <div className="mx-auto max-w-[560px] text-center">
+          <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+            Three steps. Zero friction.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-white/30">
+            No setup, no learning curve. Just speak and let the magic happen.
+          </p>
+        </div>
 
-        <div className="relative mt-20 grid gap-12 lg:grid-cols-3 lg:gap-6">
-          {/* Connecting line between step number circles */}
-          <div className="absolute top-6 left-[16.67%] right-[16.67%] hidden h-px overflow-hidden lg:block">
-            <div className="h-full bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
+        {/* Timeline */}
+        <div className="relative mt-24">
+          {/* Vertical connecting line — desktop */}
+          <div className="absolute top-0 bottom-0 left-1/2 hidden w-px -translate-x-1/2 lg:block">
+            <div className="h-full bg-gradient-to-b from-transparent via-white/[0.1] to-transparent" />
+            {/* Animated traveling dot */}
             <motion.div
-              className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/60 shadow-[0_0_10px_rgba(255,255,255,0.35)]"
-              animate={{ left: ['0%', '100%'] }}
+              className="absolute left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_14px_rgba(255,255,255,0.5)]"
+              animate={{ top: ['0%', '100%'] }}
               transition={{
-                duration: 2.5,
+                duration: 4,
                 repeat: Infinity,
                 ease: 'linear',
               }}
             />
           </div>
 
-          {steps.map((step) => (
-            <div
-              key={step.number}
-              className="relative flex flex-col items-center text-center"
-            >
-              {/* Step number circle */}
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.1] bg-[#0f0f0f]">
-                <span className="text-xs font-semibold text-white/50">
-                  {step.number}
-                </span>
-              </div>
+          {/* Vertical connecting line — mobile, offset to left */}
+          <div className="absolute top-0 bottom-0 left-6 w-px lg:hidden">
+            <div className="h-full bg-gradient-to-b from-transparent via-white/[0.08] to-transparent" />
+          </div>
 
-              {/* Card */}
-              <div className="relative mt-8 w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8">
-                {/* Large decorative number */}
-                <span className="absolute top-1 right-3 text-[100px] font-bold leading-none text-white/[0.03] select-none">
-                  {step.number}
-                </span>
+          <div className="flex flex-col gap-16 lg:gap-24">
+            {steps.map((step, index) => {
+              const isLeft = index % 2 === 0
+              const Icon = step.icon
 
-                {/* Icon */}
-                <div className="relative">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
-                    <step.icon
-                      className="size-5 text-white/50"
-                      strokeWidth={1.5}
-                    />
+              return (
+                <div
+                  key={step.number}
+                  className="relative flex items-start lg:items-center"
+                >
+                  {/* Desktop zig-zag layout */}
+                  <div className="hidden w-full lg:grid lg:grid-cols-2 lg:items-center lg:gap-16">
+                    {/* Left side */}
+                    <div
+                      className={`flex ${isLeft ? 'justify-end' : 'justify-start'}`}
+                    >
+                      {isLeft && (
+                        <div className="max-w-[380px] rounded-2xl border border-white/[0.06] bg-white/[0.015] p-8">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+                            <Icon
+                              className="size-5 text-white/55"
+                              strokeWidth={1.5}
+                            />
+                          </div>
+                          <h3 className="mt-6 text-lg font-medium text-white/90">
+                            {step.title}
+                          </h3>
+                          <p className="mt-3 text-sm leading-relaxed text-white/35">
+                            {step.description}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Center step circle */}
+                    <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/[0.08] bg-[#0c0c0c] shadow-[0_0_24px_rgba(255,255,255,0.04)]">
+                        <span className="text-sm font-semibold text-white/40">
+                          {step.number}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right side */}
+                    <div
+                      className={`flex ${!isLeft ? 'justify-start' : 'justify-end'}`}
+                    >
+                      {!isLeft && (
+                        <div className="max-w-[380px] rounded-2xl border border-white/[0.06] bg-white/[0.015] p-8">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+                            <Icon
+                              className="size-5 text-white/55"
+                              strokeWidth={1.5}
+                            />
+                          </div>
+                          <h3 className="mt-6 text-lg font-medium text-white/90">
+                            {step.title}
+                          </h3>
+                          <p className="mt-3 text-sm leading-relaxed text-white/35">
+                            {step.description}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Mobile stacked layout */}
+                  <div className="flex items-start gap-6 lg:hidden">
+                    {/* Step circle on the timeline */}
+                    <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-[#0c0c0c]">
+                      <span className="text-sm font-semibold text-white/40">
+                        {step.number}
+                      </span>
+                    </div>
+
+                    {/* Card */}
+                    <div className="flex-1 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+                        <Icon
+                          className="size-5 text-white/55"
+                          strokeWidth={1.5}
+                        />
+                      </div>
+                      <h3 className="mt-5 text-lg font-medium text-white/90">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/35">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                <h3 className="relative mt-6 text-lg font-medium text-white/90">
-                  {step.title}
-                </h3>
-                <p className="relative mt-3 text-sm leading-relaxed text-white/35">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
