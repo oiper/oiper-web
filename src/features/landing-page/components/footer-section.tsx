@@ -91,9 +91,11 @@ export function FooterSection() {
 
         <div className="mt-24 flex flex-col items-start justify-between gap-6 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-semibold tracking-[-0.03em] text-white">
-              OiPer
-            </span>
+            <img
+              src="https://github.com/oiper.png"
+              alt="OiPer"
+              className="h-7 w-auto rounded-md"
+            />
             <span className="text-sm text-white/25">
               Private speech transcription.
             </span>
