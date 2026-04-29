@@ -1,6 +1,7 @@
 'use client'
 
 import { Check } from 'lucide-react'
+import { Wrapper } from '../../../components/wrapper'
 
 const plans = [
   {
@@ -66,7 +67,7 @@ export function PricingSection() {
         <div className="absolute top-1/2 left-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.018),transparent_70%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1160px] px-6 sm:px-10">
+      <Wrapper className="relative" maxWidth="68rem">
         <div className="mx-auto max-w-[560px] text-center">
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
             Simple pricing.
@@ -140,7 +141,7 @@ export function PricingSection() {
             </div>
           ))}
         </div>
-      </div>
+      </Wrapper>
     </section>
   )
 }

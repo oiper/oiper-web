@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Wrapper } from '../../../components/wrapper'
 import { GlobeCanvas } from './globe-canvas'
 
 const languages = [
@@ -38,7 +39,7 @@ export function LanguagesSection() {
         <GlobeCanvas onReady={() => setGlobeReady(true)} />
       </div>
 
-      <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
+      <Wrapper className="relative">
         <div className="max-w-[520px]">
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
             Speak your language.
@@ -71,7 +72,7 @@ export function LanguagesSection() {
             </div>
           ))}
         </div>
-      </div>
+      </Wrapper>
     </section>
   )
 }

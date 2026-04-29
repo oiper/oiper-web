@@ -1,6 +1,7 @@
 'use client'
 
 import { BookOpen, Github, LifeBuoy, ShieldCheck } from 'lucide-react'
+import { Wrapper } from '../../../components/wrapper'
 
 const productLinks = [
   { label: 'Features', href: '#features' },
@@ -24,7 +25,7 @@ export function FooterSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1100px] px-6 pt-24 pb-12 sm:px-10 sm:pt-32">
+      <Wrapper className="relative pt-24 pb-12 sm:pt-32">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
         <div className="flex flex-col gap-16 lg:flex-row lg:items-start lg:justify-between">
@@ -90,7 +91,7 @@ export function FooterSection() {
           </div>
           <p className="text-sm text-white/25">© OiPer</p>
         </div>
-      </div>
+      </Wrapper>
     </footer>
   )
 }

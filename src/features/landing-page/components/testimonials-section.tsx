@@ -1,6 +1,7 @@
 'use client'
 
 import { Quote } from 'lucide-react'
+import { Wrapper } from '../../../components/wrapper'
 
 const testimonials = [
   {
@@ -37,7 +38,7 @@ export function TestimonialsSection() {
         <div className="absolute top-1/2 left-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/3 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02),transparent_70%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
+      <Wrapper className="relative">
         <div className="mx-auto max-w-[560px] text-center">
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
             Loved by users.
@@ -79,7 +80,7 @@ export function TestimonialsSection() {
             </div>
           ))}
         </div>
-      </div>
+      </Wrapper>
     </section>
   )
 }
