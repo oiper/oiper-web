@@ -1,5 +1,6 @@
 ## Project
 
+- DO NOT build the entire project by yourself.
 - CHECK linting errors and warnings (`nr lint` or `nr lint<file>`) in the code before submitting any changes; fix all issues to ensure a clean codebase.
 
 ## Styling
