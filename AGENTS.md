@@ -1,6 +1,6 @@
 ## Project
 
-- CHECK linting errors and warnings in the code before submitting any changes; fix all issues to ensure a clean codebase (eg: `nr lint` or `nr lint<file>`).
+- CHECK linting errors and warnings (`nr lint` or `nr lint<file>`) in the code before submitting any changes; fix all issues to ensure a clean codebase.
 
 ## Styling
 
