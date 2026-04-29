@@ -2,6 +2,16 @@
 
 import { Mic, Settings } from 'lucide-react'
 import { Wrapper } from '../../../components/wrapper'
+import {
+  ANCHOR_FEATURES,
+  ANCHOR_LANGUAGES,
+  ANCHOR_PERFORMANCE,
+  ANCHOR_PRIVACY,
+  ANCHOR_TESTIMONIALS,
+  DOWNLOAD_URL,
+  GITHUB_REPO,
+  HOME,
+} from '../constants/links'
 import { AnimatedWaveform } from './animated-waveform'
 import { LightningBase } from './lightning-base'
 
@@ -17,38 +27,38 @@ export function HeroSection() {
       <Wrapper className="relative z-10">
         <nav className="flex h-[80px] items-center justify-between">
           <a
-            href="/"
+            href={HOME}
             className="text-2xl font-semibold tracking-[-0.04em] text-white"
           >
             OiPer
           </a>
 
           <div className="hidden items-center gap-10 text-sm text-white/60 md:flex">
-            <a href="#features" className="hover:text-white">
+            <a href={ANCHOR_FEATURES} className="hover:text-white">
               Features
             </a>
-            <a href="#performance" className="hover:text-white">
+            <a href={ANCHOR_PERFORMANCE} className="hover:text-white">
               Performance
             </a>
-            <a href="#privacy" className="hover:text-white">
+            <a href={ANCHOR_PRIVACY} className="hover:text-white">
               Privacy
             </a>
-            <a href="#languages" className="hover:text-white">
+            <a href={ANCHOR_LANGUAGES} className="hover:text-white">
               Languages
             </a>
-            <a href="#testimonials" className="hover:text-white">
+            <a href={ANCHOR_TESTIMONIALS} className="hover:text-white">
               Testimonials
             </a>
-            <a href="#download" className="hover:text-white">
+            <a href={DOWNLOAD_URL} className="hover:text-white">
               Downloads
             </a>
-            <a href="/docs" className="hover:text-white">
+            <a href={GITHUB_REPO} className="hover:text-white">
               Docs
             </a>
           </div>
 
           <a
-            href="/download"
+            href={DOWNLOAD_URL}
             className="inline-flex h-10 items-center justify-center rounded border border-white/20 bg-white/5 px-5 text-sm font-medium text-white hover:border-white/40 hover:bg-white/10"
           >
             Download
@@ -70,13 +80,13 @@ export function HeroSection() {
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
-                href="/download"
+                href={DOWNLOAD_URL}
                 className="inline-flex h-[52px] items-center justify-center rounded bg-white px-8 text-base font-medium text-[#0a0a0a] hover:bg-white/90"
               >
                 Download OiPer
               </a>
               <a
-                href="#workflow"
+                href={ANCHOR_FEATURES}
                 className="inline-flex h-[52px] items-center justify-center rounded border border-white/15 px-8 text-base font-medium text-white hover:border-white/30 hover:bg-white/5"
               >
                 See how it works
