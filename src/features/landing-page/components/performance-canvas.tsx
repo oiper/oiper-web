@@ -182,10 +182,10 @@ export function PerformanceCanvas() {
       words.push({
         x: x + 8,
         y: spawnY,
-        vx: 3 + Math.random() * 4,
+        vx: 14 + Math.random() * 10,
         vy: (Math.random() - 0.5) * 0.6,
         text,
-        alpha: 0.6 + Math.random() * 0.3,
+        alpha: 1,
         life: 0,
         maxLife: 70 + Math.random() * 50,
       })
@@ -208,22 +208,22 @@ export function PerformanceCanvas() {
     function drawBeam(time: number) {
       const glowGrad = ctx.createLinearGradient(beamX - 80, 0, beamX + 80, 0)
       glowGrad.addColorStop(0, 'rgba(255,255,255,0)')
-      glowGrad.addColorStop(0.2, 'rgba(255,255,255,0.03)')
-      glowGrad.addColorStop(0.5, 'rgba(255,255,255,0.09)')
-      glowGrad.addColorStop(0.8, 'rgba(255,255,255,0.03)')
+      glowGrad.addColorStop(0.2, 'rgba(255,255,255,0.015)')
+      glowGrad.addColorStop(0.5, 'rgba(255,255,255,0.05)')
+      glowGrad.addColorStop(0.8, 'rgba(255,255,255,0.015)')
       glowGrad.addColorStop(1, 'rgba(255,255,255,0)')
       ctx.fillStyle = glowGrad
       ctx.fillRect(beamX - 80, 0, 160, h)
 
-      const coreAlpha = 0.14 + Math.sin(time * 2.5) * 0.05
-      ctx.shadowBlur = 20
-      ctx.shadowColor = `rgba(255,255,255,${coreAlpha + 0.05})`
-      ctx.fillStyle = `rgba(255,255,255,${coreAlpha + 0.08})`
+      const coreAlpha = 0.08 + Math.sin(time * 2.5) * 0.03
+      ctx.shadowBlur = 12
+      ctx.shadowColor = `rgba(255,255,255,${coreAlpha + 0.03})`
+      ctx.fillStyle = `rgba(255,255,255,${coreAlpha + 0.04})`
       ctx.fillRect(beamX - 2, 20, 4, h - 40)
       ctx.shadowBlur = 0
 
       for (let i = 0; i < 4; i++) {
-        const ringAlpha = 0.035 + Math.sin(time * 3 + i * 1.5) * 0.02
+        const ringAlpha = 0.02 + Math.sin(time * 3 + i * 1.5) * 0.01
         const ringW = 28 + Math.sin(time * 0.8 + i) * 14
         const ringY = 45 + i * ((h - 90) / 3)
         ctx.strokeStyle = `rgba(255,255,255,${Math.max(0, ringAlpha)})`
@@ -290,19 +290,14 @@ export function PerformanceCanvas() {
 
       for (let idx = words.length - 1; idx >= 0; idx--) {
         const word = words[idx]
-        word.life++
-        const lifeRatio = word.life / word.maxLife
-
         word.x += word.vx
         word.y += word.vy
-        let renderAlpha = Math.sin(lifeRatio * Math.PI) * 0.75
-        if (inCardBlock(word.x, word.y, 10)) renderAlpha *= 0.3
 
         ctx.font = '12px monospace'
-        ctx.fillStyle = `rgba(255,255,255,${renderAlpha})`
+        ctx.fillStyle = `rgba(255,255,255,${word.alpha})`
         ctx.fillText(word.text, word.x, word.y)
 
-        if (word.life > word.maxLife) {
+        if (word.x > w + 50) {
           words.splice(idx, 1)
         }
       }
