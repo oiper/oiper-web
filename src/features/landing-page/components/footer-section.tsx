@@ -2,20 +2,29 @@
 
 import { BookOpen, Github, LifeBuoy, ShieldCheck } from 'lucide-react'
 import { Wrapper } from '../../../components/wrapper'
+import {
+  ANCHOR_FEATURES,
+  ANCHOR_LANGUAGES,
+  ANCHOR_PERFORMANCE,
+  ANCHOR_PRICING,
+  ANCHOR_PRIVACY,
+  DOWNLOAD_URL,
+  GITHUB_REPO,
+} from '../constants/links'
 
 const productLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'Performance', href: '#performance' },
-  { label: 'Privacy', href: '#privacy' },
-  { label: 'Languages', href: '#languages' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Features', href: ANCHOR_FEATURES },
+  { label: 'Performance', href: ANCHOR_PERFORMANCE },
+  { label: 'Privacy', href: ANCHOR_PRIVACY },
+  { label: 'Languages', href: ANCHOR_LANGUAGES },
+  { label: 'Pricing', href: ANCHOR_PRICING },
 ]
 
 const resourceLinks = [
-  { icon: BookOpen, label: 'Documentation', href: '/docs' },
-  { icon: Github, label: 'GitHub', href: 'https://github.com' },
-  { icon: LifeBuoy, label: 'Support', href: '/support' },
-  { icon: ShieldCheck, label: 'Privacy', href: '/privacy' },
+  { icon: BookOpen, label: 'Documentation', href: GITHUB_REPO },
+  { icon: Github, label: 'GitHub', href: GITHUB_REPO },
+  { icon: LifeBuoy, label: 'Support', href: GITHUB_REPO },
+  { icon: ShieldCheck, label: 'Privacy', href: GITHUB_REPO },
 ]
 
 export function FooterSection() {
@@ -38,7 +47,7 @@ export function FooterSection() {
               No account required.
             </p>
             <a
-              href="/download"
+              href={DOWNLOAD_URL}
               className="mt-10 inline-flex h-[52px] items-center justify-center rounded bg-white px-8 text-base font-medium text-[#0a0a0a] hover:bg-white/90"
             >
               Download OiPer

@@ -16,8 +16,7 @@ const plans = [
       'Offline usage',
       'Community support',
     ],
-    cta: 'Download',
-    href: '/download',
+    cta: 'Coming Soon',
     featured: false,
   },
   {
@@ -33,8 +32,7 @@ const plans = [
       'Cloud sync across devices',
       'Priority email support',
     ],
-    cta: 'Get Pro',
-    href: '/checkout/pro',
+    cta: 'Coming Soon',
     featured: true,
   },
   {
@@ -51,8 +49,7 @@ const plans = [
       'Dedicated support',
       'Custom integrations',
     ],
-    cta: 'Contact Sales',
-    href: '/contact',
+    cta: 'Coming Soon',
     featured: false,
   },
 ]
@@ -128,16 +125,16 @@ export function PricingSection() {
                 </div>
               </div>
 
-              <a
-                href={plan.href}
-                className={`mt-10 flex h-[46px] items-center justify-center rounded-lg text-sm font-medium transition-colors ${
+              <button
+                disabled
+                className={`mt-10 flex h-[46px] cursor-not-allowed items-center justify-center rounded-lg text-sm font-medium opacity-50 ${
                   plan.featured
-                    ? 'bg-white text-[#0a0a0a] hover:bg-white/90'
-                    : 'border border-white/[0.10] text-white hover:border-white/25 hover:bg-white/[0.04]'
+                    ? 'bg-white/70 text-[#0a0a0a]'
+                    : 'border border-white/[0.10] text-white/60'
                 }`}
               >
                 {plan.cta}
-              </a>
+              </button>
             </div>
           ))}
         </div>
