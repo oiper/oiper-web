@@ -1,6 +1,7 @@
 'use client'
 
 import { Shield, SlidersHorizontal } from 'lucide-react'
+import { Wrapper } from '../../../components/wrapper'
 
 const items = [
   {
@@ -27,7 +28,7 @@ export function PrivacySection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
+      <Wrapper className="relative">
         <div className="mx-auto max-w-[560px] text-center">
           <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
             Privacy by design.
@@ -119,7 +120,7 @@ export function PrivacySection() {
             )
           })}
         </div>
-      </div>
+      </Wrapper>
     </section>
   )
 }

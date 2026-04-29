@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
+import { Wrapper } from '../../../components/wrapper'
 import { PerformanceCanvas } from './performance-canvas'
 
 const benchmarks = [
@@ -25,7 +26,7 @@ export function PerformanceSection() {
     >
       <PerformanceCanvas />
 
-      <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
+      <Wrapper className="relative">
         <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-20">
           <div>
             <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-[3.25rem]">
@@ -115,7 +116,7 @@ export function PerformanceSection() {
             </div>
           </div>
         </div>
-      </div>
+      </Wrapper>
     </section>
   )
 }
