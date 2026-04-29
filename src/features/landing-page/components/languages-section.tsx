@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { GlobeCanvas } from './globe-canvas'
 
 const languages = [
@@ -22,13 +23,19 @@ const languages = [
 ]
 
 export function LanguagesSection() {
+  const [globeReady, setGlobeReady] = useState(false)
+
   return (
     <section
       id="languages"
       className="relative overflow-hidden border-b border-white/[0.06] bg-[#0a0a0a] py-32 sm:py-40"
     >
-      <div className="pointer-events-none absolute top-1/2 right-0 hidden h-[520px] w-[520px] translate-x-1/4 -translate-y-1/2 overflow-hidden rounded-full shadow-[0_0_80px_rgba(40,80,140,0.12),inset_0_0_40px_rgba(0,0,0,0.8)] select-none lg:block">
-        <GlobeCanvas />
+      <div
+        className={`pointer-events-none absolute top-1/2 right-0 hidden h-[520px] w-[520px] translate-x-1/4 -translate-y-1/2 overflow-hidden rounded-full shadow-[0_0_80px_rgba(255,255,255,0.04),inset_0_0_40px_rgba(0,0,0,0.8)] transition-opacity duration-700 ease-out select-none lg:block ${
+          globeReady ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <GlobeCanvas onReady={() => setGlobeReady(true)} />
       </div>
 
       <div className="relative mx-auto max-w-[1100px] px-6 sm:px-10">
