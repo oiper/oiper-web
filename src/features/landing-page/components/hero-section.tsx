@@ -1,5 +1,6 @@
 'use client'
 
+import { OiPerLogoText } from '@/components/logo/logo-text'
 import { Mic, Settings } from 'lucide-react'
 import { Wrapper } from '../../../components/wrapper'
 import {
@@ -27,14 +28,7 @@ export function HeroSection() {
       <Wrapper className="relative z-10">
         <nav className="flex h-[80px] items-center justify-between">
           <a href={HOME} className="flex items-center gap-3">
-            <img
-              src="https://github.com/oiper.png"
-              alt="OiPer"
-              className="h-8 w-auto rounded-md"
-            />
-            <span className="text-2xl font-semibold tracking-[-0.04em] text-white">
-              OiPer
-            </span>
+            <OiPerLogoText className="text-[2rem]" />
           </a>
 
           <div className="hidden items-center gap-10 text-sm text-white/60 md:flex">
