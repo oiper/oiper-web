@@ -18,7 +18,7 @@ export function LandingPage() {
       <TestimonialsSection /> {/* CENTER ALIGNED SECTION */}
       <LanguagesSection /> {/* LEFT ALIGNED SECTION */}
       <PrivacySection /> {/* CENTER ALIGNED SECTION */}
-      <PricingSection /> {/* NO SECTION TITLES, just the pricing cards */}
+      <PricingSection /> {/* CENTER ALIGNED SECTION */}
       <FooterSection />
     </main>
   )
