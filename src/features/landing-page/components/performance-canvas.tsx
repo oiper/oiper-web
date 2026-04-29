@@ -2,252 +2,331 @@
 
 import { useEffect, useRef } from 'react'
 
-interface Particle {
+interface Note {
+  x: number
+  y: number
+  vx: number
+  baseVy: number
+  symbol: string
+  size: number
+  alpha: number
+  processed: boolean
+  phase: number
+}
+
+interface Word {
   x: number
   y: number
   vx: number
   vy: number
-  size: number
+  text: string
   alpha: number
   life: number
   maxLife: number
-  type: 'data' | 'spark' | 'text'
-  char?: string
 }
 
-interface FreqBar {
+interface Spark {
   x: number
-  height: number
-  targetHeight: number
-  speed: number
+  y: number
+  vx: number
+  vy: number
+  alpha: number
+  life: number
+  maxLife: number
 }
+
+const WORDS = [
+  'hello',
+  'voice',
+  'text',
+  'fast',
+  'now',
+  'go',
+  'run',
+  'speed',
+  'instant',
+  'local',
+  'private',
+  'clear',
+  'done',
+  'yes',
+  'quick',
+  'smooth',
+  'sharp',
+  'clean',
+  'pure',
+  'sound',
+  'note',
+  'write',
+  'type',
+  'flow',
+  'beam',
+  'light',
+  'pulse',
+  'wave',
+  'track',
+  'record',
+  'Free Palestine',
+]
+
+const NOTES = ['\u2669', '\u266A', '\u266B', '\u266C']
 
 export function PerformanceCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
+    const canvas = canvasRef.current!
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d')
+    const section = canvas.parentElement!
+    if (!section) return
+
+    const ctx = canvas.getContext('2d')!
     if (!ctx) return
 
     let animId: number
-    let particles: Particle[] = []
-    let freqBars: FreqBar[] = []
+    const notes: Note[] = []
+    const words: Word[] = []
+    const sparks: Spark[] = []
 
-    const resize = () => {
+    let w = 0
+    let h = 0
+    let beamX = 0
+    let targetBeamX = 0
+    let mouseActive = false
+
+    function resize() {
       const dpr = window.devicePixelRatio || 1
       const parent = canvas.parentElement
       if (!parent) return
-      canvas.width = parent.clientWidth * dpr
-      canvas.height = parent.clientHeight * dpr
-      canvas.style.width = `${parent.clientWidth}px`
-      canvas.style.height = `${parent.clientHeight}px`
+      w = parent.clientWidth
+      h = parent.clientHeight
+      canvas.width = w * dpr
+      canvas.height = h * dpr
+      canvas.style.width = `${w}px`
+      canvas.style.height = `${h}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-
-      const w = parent.clientWidth
-      const barCount = Math.floor(w / 8)
-      freqBars = Array.from({ length: barCount }, (_, i) => ({
-        x: i * 8 + 1,
-        height: 4,
-        targetHeight: 4,
-        speed: 0.04 + Math.random() * 0.06,
-      }))
+      if (!mouseActive) {
+        beamX = w / 2
+        targetBeamX = w / 2
+      }
     }
 
     resize()
     window.addEventListener('resize', resize)
 
-    const parent = canvas.parentElement!
-    const w = parent.clientWidth
-    const h = parent.clientHeight
-    const centerX = w * 0.62
-    const engineWidth = 90
+    function handleMouseMove(e: MouseEvent) {
+      const rect = section.getBoundingClientRect()
+      targetBeamX = e.clientX - rect.left
+      mouseActive = true
+    }
 
-    // Text block area to avoid (left content)
-    const textBlock = { x: 0, y: 60, w: Math.min(540, w * 0.5), h: h - 120 }
+    function handleMouseLeave() {
+      mouseActive = false
+    }
 
-    const inTextBlock = (x: number, y: number, margin: number = 0) => {
+    section.addEventListener('mousemove', handleMouseMove)
+    section.addEventListener('mouseleave', handleMouseLeave)
+
+    function inTextBlock(x: number, y: number, margin = 0) {
+      const blockW = Math.min(520, w * 0.48)
       return (
-        x > textBlock.x - margin &&
-        x < textBlock.x + textBlock.w + margin &&
-        y > textBlock.y - margin &&
-        y < textBlock.y + textBlock.h + margin
+        x > 0 - margin &&
+        x < blockW + margin &&
+        y > 70 - margin &&
+        y < h - 140 + margin
       )
     }
 
-    const spawnParticle = () => {
-      const type =
-        Math.random() > 0.95
-          ? 'text'
-          : Math.random() > 0.88
-            ? 'spark'
-            : 'data'
+    function inCardBlock(x: number, y: number, margin = 0) {
+      const cx = w * 0.48
+      const cw = w * 0.44
+      return (
+        x > cx - margin &&
+        x < cx + cw + margin &&
+        y > 100 - margin &&
+        y < h - 200 + margin
+      )
+    }
 
-      let x: number, y: number, vx: number, vy: number
-
-      if (type === 'text') {
-        x = centerX + (Math.random() - 0.5) * 50
-        y = h * 0.35 + Math.random() * 120
-        vx = (Math.random() - 0.5) * 0.3
-        vy = -0.5 - Math.random() * 0.5
-      } else {
-        const side = Math.random() > 0.35 ? 'left' : 'right'
-        x = side === 'left' ? -5 : w + 5
-        y = Math.random() * h
-        vx = side === 'left' ? 0.6 + Math.random() * 2 : -(0.6 + Math.random() * 2)
-        vy = (Math.random() - 0.5) * 0.3
-
-        // If spawned in text block, nudge out or make very subtle
-        if (inTextBlock(x, y, 20)) {
-          if (Math.random() > 0.7) return // skip
-          y = y < h / 2 ? 20 + Math.random() * 40 : h - 60 + Math.random() * 40
-        }
+    function spawnNote() {
+      const y = 20 + Math.random() * (h - 40)
+      if (inTextBlock(60, y, 60)) {
+        if (Math.random() > 0.02) return
       }
 
-      const p: Particle = {
-        x,
+      notes.push({
+        x: -20,
         y,
-        vx,
-        vy,
-        size: type === 'spark' ? 0.6 + Math.random() * 1.2 : 0.5 + Math.random() * 1.5,
-        alpha: type === 'text' ? 0.35 : 0.15 + Math.random() * 0.25,
-        life: 0,
-        maxLife: type === 'text' ? 90 : 160 + Math.random() * 100,
-        type,
-      }
-      if (type === 'text') {
-        const chars = 'aeiostrnld'
-        p.char = chars[Math.floor(Math.random() * chars.length)]
-      }
-      particles.push(p)
-    }
-
-    const drawEngine = () => {
-      const grad = ctx.createLinearGradient(centerX - engineWidth / 2, 0, centerX + engineWidth / 2, 0)
-      grad.addColorStop(0, 'rgba(255,255,255,0)')
-      grad.addColorStop(0.2, 'rgba(255,255,255,0.025)')
-      grad.addColorStop(0.5, 'rgba(255,255,255,0.065)')
-      grad.addColorStop(0.8, 'rgba(255,255,255,0.025)')
-      grad.addColorStop(1, 'rgba(255,255,255,0)')
-
-      ctx.fillStyle = grad
-      ctx.fillRect(centerX - engineWidth / 2, 0, engineWidth, h)
-
-      const time = Date.now() * 0.001
-      const coreAlpha = 0.08 + Math.sin(time) * 0.04
-      ctx.shadowBlur = 20
-      ctx.shadowColor = `rgba(255,255,255,${coreAlpha})`
-      ctx.strokeStyle = `rgba(255,255,255,${coreAlpha + 0.06})`
-      ctx.lineWidth = 1.2
-      ctx.beginPath()
-      ctx.moveTo(centerX, 20)
-      ctx.lineTo(centerX, h - 20)
-      ctx.stroke()
-      ctx.shadowBlur = 0
-    }
-
-    const drawFreqBars = () => {
-      freqBars.forEach((bar) => {
-        bar.targetHeight = 3 + Math.random() * 35
-        bar.height += (bar.targetHeight - bar.height) * bar.speed
-        const barAlpha = 0.025 + (bar.height / 45) * 0.055
-        ctx.fillStyle = `rgba(255,255,255,${barAlpha})`
-        ctx.fillRect(bar.x, h - bar.height - 10, 1.5, bar.height)
+        vx: 0.8 + Math.random() * 1.2,
+        baseVy: (Math.random() - 0.5) * 0.2,
+        symbol: NOTES[Math.floor(Math.random() * NOTES.length)],
+        size: 12 + Math.random() * 10,
+        alpha: 0,
+        processed: false,
+        phase: Math.random() * Math.PI * 2,
       })
     }
 
-    const draw = () => {
+    function spawnWord(x: number, y: number) {
+      const text = WORDS[Math.floor(Math.random() * WORDS.length)]
+      let spawnY = y + (Math.random() - 0.5) * 20
+      if (inCardBlock(x + 20, spawnY, 30)) {
+        const cardCenterY = h / 2
+        spawnY =
+          spawnY < cardCenterY
+            ? 80 + Math.random() * 20
+            : h - 80 + Math.random() * 20
+      }
+
+      words.push({
+        x: x + 8,
+        y: spawnY,
+        vx: 3 + Math.random() * 4,
+        vy: (Math.random() - 0.5) * 0.6,
+        text,
+        alpha: 0.6 + Math.random() * 0.3,
+        life: 0,
+        maxLife: 70 + Math.random() * 50,
+      })
+    }
+
+    function spawnSparks(x: number, y: number, count: number) {
+      for (let i = 0; i < count; i++) {
+        sparks.push({
+          x: x + (Math.random() - 0.5) * 8,
+          y: y + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.2) * 5,
+          vy: (Math.random() - 0.5) * 5,
+          alpha: 0.7 + Math.random() * 0.3,
+          life: 0,
+          maxLife: 15 + Math.random() * 10,
+        })
+      }
+    }
+
+    function drawBeam(time: number) {
+      const glowGrad = ctx.createLinearGradient(beamX - 80, 0, beamX + 80, 0)
+      glowGrad.addColorStop(0, 'rgba(255,255,255,0)')
+      glowGrad.addColorStop(0.2, 'rgba(255,255,255,0.03)')
+      glowGrad.addColorStop(0.5, 'rgba(255,255,255,0.09)')
+      glowGrad.addColorStop(0.8, 'rgba(255,255,255,0.03)')
+      glowGrad.addColorStop(1, 'rgba(255,255,255,0)')
+      ctx.fillStyle = glowGrad
+      ctx.fillRect(beamX - 80, 0, 160, h)
+
+      const coreAlpha = 0.14 + Math.sin(time * 2.5) * 0.05
+      ctx.shadowBlur = 20
+      ctx.shadowColor = `rgba(255,255,255,${coreAlpha + 0.05})`
+      ctx.fillStyle = `rgba(255,255,255,${coreAlpha + 0.08})`
+      ctx.fillRect(beamX - 2, 20, 4, h - 40)
+      ctx.shadowBlur = 0
+
+      for (let i = 0; i < 4; i++) {
+        const ringAlpha = 0.035 + Math.sin(time * 3 + i * 1.5) * 0.02
+        const ringW = 28 + Math.sin(time * 0.8 + i) * 14
+        const ringY = 45 + i * ((h - 90) / 3)
+        ctx.strokeStyle = `rgba(255,255,255,${Math.max(0, ringAlpha)})`
+        ctx.lineWidth = 0.8
+        ctx.beginPath()
+        ctx.moveTo(beamX - ringW, ringY)
+        ctx.lineTo(beamX + ringW, ringY)
+        ctx.stroke()
+      }
+    }
+
+    function draw() {
+      const time = Date.now() * 0.001
       ctx.clearRect(0, 0, w, h)
 
-      drawEngine()
-      drawFreqBars()
+      const destX = mouseActive ? targetBeamX : w / 2
+      beamX += (destX - beamX) * 0.08
 
-      const time = Date.now() * 0.0008
+      drawBeam(time)
 
-      // Subtle horizontal wave lines at top and bottom (safe zones)
-      for (let i = 0; i < 3; i++) {
-        const baseY = i === 0 ? 25 : i === 1 ? h - 30 : h - 50
-        ctx.strokeStyle = `rgba(255,255,255,${0.02 + Math.sin(time + i) * 0.01})`
-        ctx.lineWidth = 0.6
+      for (let i = 0; i < 4; i++) {
+        const gy = h * 0.15 + i * h * 0.23
+        ctx.strokeStyle = `rgba(255,255,255,${0.02 + Math.sin(time * 0.6 + i) * 0.01})`
+        ctx.lineWidth = 0.5
         ctx.beginPath()
-        for (let px = 0; px < w; px += 4) {
-          const py = baseY + Math.sin(px * 0.015 + time * 2 + i) * 8
+        for (let px = 0; px < beamX - 20; px += 5) {
+          const py = gy + Math.sin(px * 0.02 + time * 4 + i * 1.5) * 6
           if (px === 0) ctx.moveTo(px, py)
           else ctx.lineTo(px, py)
         }
         ctx.stroke()
       }
 
-      // Speed streaks only in safe areas (right side and margins)
-      for (let i = 0; i < 4; i++) {
-        const sy = 30 + Math.random() * (h - 60)
-        if (inTextBlock(w * 0.55, sy)) continue
-        const streakAlpha = 0.012 + Math.sin(time * 2 + i * 1.5) * 0.008
-        ctx.strokeStyle = `rgba(255,255,255,${Math.max(0, streakAlpha)})`
-        ctx.lineWidth = 0.6
+      for (let idx = notes.length - 1; idx >= 0; idx--) {
+        const note = notes[idx]
+        const waveY = Math.sin(note.x * 0.015 + note.phase + time * 3) * 6
+        note.y += note.baseVy
+        const drawY = note.y + waveY
+
+        if (!note.processed && note.x > beamX) {
+          note.processed = true
+          spawnWord(beamX, drawY)
+          spawnSparks(beamX, drawY, 6)
+          notes.splice(idx, 1)
+          continue
+        }
+
+        note.x += note.vx
+
+        if (note.x < 60) note.alpha = Math.min(note.alpha + 0.06, 0.45)
+        else note.alpha = Math.min(note.alpha + 0.02, 0.5)
+
+        const overText = inTextBlock(note.x, drawY, 6)
+        const renderAlpha = overText ? note.alpha * 0.08 : note.alpha
+
+        ctx.font = `${note.size}px serif`
+        ctx.fillStyle = `rgba(255,255,255,${renderAlpha * 0.8})`
+        ctx.fillText(note.symbol, note.x, drawY)
+
+        if (note.x > beamX + 10 || note.alpha < 0.005) {
+          notes.splice(idx, 1)
+        }
+      }
+
+      for (let idx = words.length - 1; idx >= 0; idx--) {
+        const word = words[idx]
+        word.life++
+        const lifeRatio = word.life / word.maxLife
+
+        word.x += word.vx
+        word.y += word.vy
+        let renderAlpha = Math.sin(lifeRatio * Math.PI) * 0.75
+        if (inCardBlock(word.x, word.y, 10)) renderAlpha *= 0.3
+
+        ctx.font = '12px monospace'
+        ctx.fillStyle = `rgba(255,255,255,${renderAlpha})`
+        ctx.fillText(word.text, word.x, word.y)
+
+        if (word.life > word.maxLife) {
+          words.splice(idx, 1)
+        }
+      }
+
+      for (let idx = sparks.length - 1; idx >= 0; idx--) {
+        const s = sparks[idx]
+        s.life++
+        const lifeRatio = s.life / s.maxLife
+
+        s.x += s.vx
+        s.y += s.vy
+        s.alpha = (1 - lifeRatio) * 0.9
+
+        ctx.fillStyle = `rgba(255,255,255,${s.alpha})`
         ctx.beginPath()
-        const sx = w * 0.45 + Math.random() * w * 0.1
-        ctx.moveTo(sx, sy)
-        ctx.lineTo(sx + 60 + Math.random() * 80, sy + (Math.random() - 0.5) * 10)
-        ctx.stroke()
-      }
+        ctx.arc(s.x, s.y, 1.2, 0, Math.PI * 2)
+        ctx.fill()
 
-      // Particles
-      for (let idx = particles.length - 1; idx >= 0; idx--) {
-        const p = particles[idx]
-        p.life++
-        const lifeRatio = p.life / p.maxLife
-        const overText = inTextBlock(p.x, p.y, 10)
-
-        if (p.type === 'text') {
-          p.x += p.vx
-          p.y += p.vy
-          p.alpha = Math.sin(lifeRatio * Math.PI) * 0.4
-          ctx.font = '10px monospace'
-          ctx.fillStyle = `rgba(255,255,255,${p.alpha})`
-          ctx.fillText(p.char || '', p.x, p.y)
-        } else {
-          const distToCenter = Math.abs(p.x - centerX)
-          const inEngine = distToCenter < engineWidth / 2
-
-          if (inEngine && !overText) {
-            p.vx *= 1.03
-            p.alpha = Math.min(p.alpha + 0.01, 0.7)
-          }
-
-          p.x += p.vx
-          p.y += p.vy
-
-          // Motion trail for fast ones
-          if (Math.abs(p.vx) > 3 && !overText) {
-            ctx.strokeStyle = `rgba(255,255,255,${p.alpha * 0.08})`
-            ctx.lineWidth = p.size * 0.35
-            ctx.beginPath()
-            ctx.moveTo(p.x, p.y)
-            ctx.lineTo(p.x - p.vx * 3, p.y - p.vy * 3)
-            ctx.stroke()
-          }
-
-          if (p.x < 30 || p.x > w - 30) {
-            p.alpha *= 0.94
-          }
-
-          const renderAlpha = overText ? p.alpha * 0.25 : p.alpha * 0.55
-          ctx.fillStyle = `rgba(255,255,255,${renderAlpha})`
-          ctx.beginPath()
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-          ctx.fill()
-        }
-
-        if (p.life > p.maxLife || p.alpha < 0.005) {
-          particles.splice(idx, 1)
+        if (s.life > s.maxLife) {
+          sparks.splice(idx, 1)
         }
       }
 
-      // Spawn rate
-      if (Math.random() < 0.14) spawnParticle()
+      if (Math.random() < 0.18) spawnNote()
 
       animId = requestAnimationFrame(draw)
     }
@@ -256,6 +335,8 @@ export function PerformanceCanvas() {
 
     return () => {
       window.removeEventListener('resize', resize)
+      section.removeEventListener('mousemove', handleMouseMove)
+      section.removeEventListener('mouseleave', handleMouseLeave)
       cancelAnimationFrame(animId)
     }
   }, [])
@@ -263,7 +344,7 @@ export function PerformanceCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 h-full w-full"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-25"
     />
   )
 }

@@ -15,10 +15,10 @@ export function LandingPage() {
       <HeroSection />
       <FeaturesSection /> {/* CENTER ALIGNED SECTION */}
       <PerformanceSection /> {/* LEFT ALIGNED SECTION */}
-      <PrivacySection /> {/* CENTER ALIGNED SECTION */}
-      <LanguagesSection /> {/* LEFT ALIGNED SECTION */}
       <TestimonialsSection /> {/* CENTER ALIGNED SECTION */}
-      <PricingSection /> {/* NO SECTION TITLES, just the pricing cards */}
+      <LanguagesSection /> {/* LEFT ALIGNED SECTION */}
+      <PrivacySection /> {/* CENTER ALIGNED SECTION */}
+      <PricingSection /> {/* CENTER ALIGNED SECTION */}
       <FooterSection />
     </main>
   )

@@ -67,7 +67,16 @@ export function PricingSection() {
       </div>
 
       <div className="relative mx-auto max-w-[1160px] px-6 sm:px-10">
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="mx-auto max-w-[560px] text-center">
+          <h2 className="text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
+            Simple pricing.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-white/40">
+            Choose the plan that works best for you. No hidden fees.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-6 lg:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.name}
